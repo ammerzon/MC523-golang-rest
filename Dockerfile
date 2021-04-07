@@ -5,11 +5,11 @@ ENV CGO_ENABLED=0
 COPY go.* ./
 RUN go mod download
 
-COPY . .
-RUN go build -o /dist/app .
+COPY . /app
+RUN go build -o ./server ./cmd
 
 FROM alpine:3
-RUN echo $(ls -l)
-COPY --from=builder /dist/app .
+WORKDIR /root/
+COPY --from=builder /app/server /bin/server
 EXPOSE 8010
-CMD ["./app"]
+CMD ["/bin/server"]

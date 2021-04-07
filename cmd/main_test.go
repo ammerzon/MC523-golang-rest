@@ -1,9 +1,11 @@
 package main
 
 import (
-	"ammerzon.com/golang-rest/config"
+	"ammerzon.com/golang-rest/internal/config"
+	"ammerzon.com/golang-rest/internal/services"
 	"bytes"
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -12,14 +14,15 @@ import (
 	"testing"
 )
 
-var a App
+var a services.ProductService
 
 func TestMain(m *testing.M) {
 	conf := config.GetConfig()
 
-	a.Initialize(conf)
+	a.Initialize(conf, mux.NewRouter())
 
 	ensureTableExists()
+	clearTable()
 	code := m.Run()
 	clearTable()
 	os.Exit(code)

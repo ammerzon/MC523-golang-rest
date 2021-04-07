@@ -20,9 +20,9 @@ type Config struct {
 func GetConfig() *Config {
 	once.Do(func() {
 		config = &Config{
-			DatabaseUsername: getString("APP_DB_USERNAME", ""),
-			DatabasePassword: getString("APP_DB_PASSWORD", ""),
-			DatabaseName:     getString("APP_DB_NAME", ""),
+			DatabaseUsername: getString("APP_DB_USERNAME", "postgres"),
+			DatabasePassword: getString("APP_DB_PASSWORD", "postgres"),
+			DatabaseName:     getString("APP_DB_NAME", "productdb"),
 		}
 	})
 	return config
