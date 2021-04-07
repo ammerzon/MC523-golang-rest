@@ -1,0 +1,49 @@
+###
+GET http://localhost:8010/product/1
+Accept: application/json
+
+###
+GET http://localhost:8010/product
+Accept: application/json
+
+###
+GET http://localhost:8010/product?s=name
+Accept: application/json
+
+###
+GET http://localhost:8010/product?s=name&lb=15.0
+Accept: application/json
+
+###
+GET http://localhost:8010/product?s=name&ub=20.0
+Accept: application/json
+
+###
+GET http://localhost:8010/product?s=name&lb=15&ub=40.0
+Accept: application/json
+
+###
+GET http://localhost:8010/search/product?q=Go
+Accept: application/json
+
+###
+POST http://localhost:8010/product
+Content-Type: application/json
+
+{
+  "name": "How to use Postman",
+  "price": 0.0
+}
+
+###
+PUT http://localhost:8010/product/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Go for Dummies",
+  "price": 45.0
+}
+
+###
+DELETE http://localhost:8010/product/2

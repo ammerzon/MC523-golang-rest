@@ -18,7 +18,7 @@ type SearchService struct {
 
 func (ss *SearchService) Initialize(conf *config.Config, r *mux.Router) {
   connectionString :=
-    fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", conf.DatabaseUsername, conf.DatabasePassword, conf.DatabaseName)
+    fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", conf.DatabaseHost, conf.DatabaseUsername, conf.DatabasePassword, conf.DatabaseName)
 
   var err error
   ss.DB, err = sql.Open("postgres", connectionString)
@@ -31,7 +31,7 @@ func (ss *SearchService) Initialize(conf *config.Config, r *mux.Router) {
 }
 
 func (ss *SearchService) initializeRoutes() {
-  ss.Router.HandleFunc("/search/products", ss.searchProducts).Queries("q", "{q}").Methods("GET")
+  ss.Router.HandleFunc("/search/product", ss.searchProducts).Queries("q", "{q}").Methods("GET")
 }
 
 func (ss *SearchService) searchProducts(w http.ResponseWriter, r *http.Request) {

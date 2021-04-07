@@ -23,7 +23,7 @@ type ProductService struct {
 
 func (ps *ProductService) Initialize(conf *config.Config, r *mux.Router) {
 	connectionString :=
-		fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", conf.DatabaseUsername, conf.DatabasePassword, conf.DatabaseName)
+		fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", conf.DatabaseHost, conf.DatabaseUsername, conf.DatabasePassword, conf.DatabaseName)
 
 	var err error
 	ps.DB, err = sql.Open("postgres", connectionString)
@@ -36,7 +36,7 @@ func (ps *ProductService) Initialize(conf *config.Config, r *mux.Router) {
 }
 
 func (ps *ProductService) initializeRoutes() {
-  ps.Router.HandleFunc("/products", ps.getProducts).Methods("GET")
+  ps.Router.HandleFunc("/product", ps.getProducts).Methods("GET")
 	ps.Router.HandleFunc("/product", ps.createProduct).Methods("POST")
 	ps.Router.HandleFunc("/product/{id:[0-9]+}", ps.getProduct).Methods("GET")
 	ps.Router.HandleFunc("/product/{id:[0-9]+}", ps.updateProduct).Methods("PUT")

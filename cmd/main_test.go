@@ -31,7 +31,7 @@ func TestMain(m *testing.M) {
 func TestEmptyTable(t *testing.T) {
 	clearTable()
 
-	req, _ := http.NewRequest("GET", "/products", nil)
+	req, _ := http.NewRequest("GET", "/product", nil)
 	response := executeRequest(req)
 
 	checkResponseCode(t, http.StatusOK, response.Code)
