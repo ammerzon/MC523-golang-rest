@@ -10,5 +10,49 @@ Second exercise for the subject MC523 SS21 at FH OÖ Campus Hagenberg based on t
 
 ## 🚀 Get started
 ```
-docker-compose up -d
+make run-docker
 ```
+
+## ⚠️ Limitations
+
+* This is a demo application and therefore does ignore common security practices.
+
+## ♻️ Refactorings
+
+### Folder structure
+To blog proposed the following structure:
+
+```shell
+.
+├── app.go
+├── main.go
+├── main_test.go
+├── model.go
+├── go.sum
+└── go.mod
+```
+
+The current implementation reorganized the folder structure in the following way and added Docker support:
+
+```shell
+.
+├── Dockerfile
+├── cmd
+│   ├── main.go
+│   └── main_test.go
+├── db
+│   └── schema.sql
+├── docker-compose.yaml
+├── go.mod
+├── go.sum
+└── internal
+    ├── config
+    ├── models
+    └── services
+```
+
+### Features
+
+* Added a product search endpoint (`/search/product`)
+* Added a price range filter to the `/product` endpoint
+* Added a sort option to the `/product` endpoint
