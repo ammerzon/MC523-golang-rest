@@ -1,6 +1,6 @@
 # Microservices in Go
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=ammerzon_MC523-golang-rest)](https://sonarcloud.io/dashboard?id=ammerzon_MC523-golang-rest) [![Build Status](https://www.travis-ci.com/ammerzon/MC523-golang-rest.svg?branch=main)](https://www.travis-ci.com/ammerzon/MC523-golang-rest)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ammerzon_MC523-golang-rest&metric=alert_status)](https://sonarcloud.io/dashboard?id=ammerzon_MC523-golang-rest) [![Build Status](https://www.travis-ci.com/ammerzon/MC523-golang-rest.svg?branch=main)](https://www.travis-ci.com/ammerzon/MC523-golang-rest)
 
 Second exercise for the subject MC523 SS21 at FH OÖ Campus Hagenberg based on the blog post [Building and Testing a REST API in Go with Gorilla Mux and PostgreSQL](https://semaphoreci.com/community/tutorials/building-and-testing-a-rest-api-in-go-with-gorilla-mux-and-postgresql).
 

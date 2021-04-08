@@ -17,7 +17,7 @@ jobs:
         - docker-compose up -d database
         - make test
     - stage: "Build Image"
-      if: branch = master
+      if: branch = main
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - make build-image
