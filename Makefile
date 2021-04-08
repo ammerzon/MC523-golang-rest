@@ -48,7 +48,7 @@ build-all: build-mac build-win build-linux
 all: test prebuild-all build-all
 build-image:
 	docker build -t $(IMAGE) .
-	docker tag $(IMAGE):latest
+	docker tag $(IMAGE) $(IMAGE):latest
 	docker push ${DOCKER_USERNAME}/$(IMAGE):latest
 run:
 	$(GOCMD) run ./cmd start
