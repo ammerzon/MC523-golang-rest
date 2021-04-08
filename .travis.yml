@@ -1,0 +1,24 @@
+language: go
+
+go:
+  - "1.15"
+
+services:
+  - 'docker'
+
+before_install:
+  - make download
+
+jobs:
+  include:
+    - stage: "Tests"
+      name: "Unit Test"
+      script: make test
+    - stage: "Build Image"
+      if: branch = master
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - make build-image
+
+notifications:
+  email: false

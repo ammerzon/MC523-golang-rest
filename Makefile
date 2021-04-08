@@ -21,6 +21,7 @@ BINARY_NAME_FILE =./dist/$(OSNAME)/$(BINARY_NAME)
 BINARY_NAME_LINUX=./dist/linux/$(BINARY_NAME)
 BINARY_NAME_MACOS=./dist/darwin/$(BINARY_NAME)
 BINARY_NAME_WIN=./dist/windows/$(BINARY_NAME)
+IMAGE=golang-rest
 prebuild:
 	mkdir -p ./dist/$(OSNAME)/
 prebuild-all:
@@ -45,9 +46,15 @@ download:
 	go mod download
 build-all: build-mac build-win build-linux
 all: test prebuild-all build-all
+build-image:
+	docker build -t $(IMAGE) .
+	GIT_SHA="$(git rev-parse --short HEAD)"
+	docker tag $(IMAGE) ${DOCKER_USERNAME}/$(IMAGE):GIT_SHA
+	docker push ${DOCKER_USERNAME}/$(IMAGE):latest
+	docker push ${DOCKER_USERNAME}/$(IMAGE):GIT_SHA
 run:
 	$(GOCMD) run ./cmd start
-build-image:
+build-stack:
 	docker-compose build
 run-docker:
 	docker-compose up --build
