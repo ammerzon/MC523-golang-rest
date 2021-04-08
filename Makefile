@@ -49,7 +49,7 @@ all: test prebuild-all build-all
 build-image:
 	docker build -t $(IMAGE) .
 	GIT_SHA="$(git rev-parse --short HEAD)"
-	docker tag $(IMAGE) ${DOCKER_USERNAME}/$(IMAGE):GIT_SHA
+	docker tag $(IMAGE):latest ${DOCKER_USERNAME}/$(IMAGE):GIT_SHA
 	docker push ${DOCKER_USERNAME}/$(IMAGE):latest
 	docker push ${DOCKER_USERNAME}/$(IMAGE):GIT_SHA
 run:
