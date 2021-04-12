@@ -51,7 +51,7 @@ build-image:
 	GIT_SHA="$(git rev-parse --short HEAD)"
 	docker tag ${DOCKER_USERNAME}/$(IMAGE):latest ${DOCKER_USERNAME}/$(IMAGE):latest
 	docker push ${DOCKER_USERNAME}/$(IMAGE):latest
-	docker push ${DOCKER_USERNAME}/$(IMAGE):$(GIT_SHA)
+	docker push ${DOCKER_USERNAME}/$(IMAGE):$GIT_SHA
 run:
 	$(GOCMD) run ./cmd start
 build-stack:
