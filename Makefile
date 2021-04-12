@@ -48,7 +48,7 @@ build-all: build-mac build-win build-linux
 all: test prebuild-all build-all
 build-image:
 	docker build -t ${DOCKER_USERNAME}/$(IMAGE):latest .
-	GIT_SHA="$(git rev-parse --short HEAD)"
+	GIT_SHA="$$(git rev-parse --short HEAD)"
 	docker tag ${DOCKER_USERNAME}/$(IMAGE):latest ${DOCKER_USERNAME}/$(IMAGE):$$GIT_SHA
 	docker push ${DOCKER_USERNAME}/$(IMAGE):latest
 	docker push ${DOCKER_USERNAME}/$(IMAGE):$$GIT_SHA
