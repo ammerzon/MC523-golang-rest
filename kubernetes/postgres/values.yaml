@@ -1,0 +1,9 @@
+postgresqlDatabase: "productdb"
+
+initdbScripts:
+  schema.sql: |
+    \connect productdb
+    CREATE TABLE IF NOT EXISTS products(id SERIAL, name TEXT NOT NULL, price NUMERIC(10, 2) NOT NULL DEFAULT 0.00, CONSTRAINT products_pkey PRIMARY KEY (id))
+  data.sql: |
+    \connect productdb
+    INSERT INTO products(name, price) VALUES ('Go for Dummies', 34.9), ('How to REST', 40.0), ('Gopher crochet', 15.0), ('Gopher sticker', 4.99), ('Clean Code', 64.0)

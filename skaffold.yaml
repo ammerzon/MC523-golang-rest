@@ -1,0 +1,22 @@
+apiVersion: skaffold/v2beta14
+kind: Config
+metadata:
+  name: golang-rest
+build:
+  artifacts:
+  - image: ammerzon/golang-rest
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+    - name: postgres
+      remoteChart: bitnami/postgresql
+      valuesFiles:
+        - "kubernetes/postgres/values.yaml"
+      namespace: golang-rest
+      createNamespace: true
+  kubectl:
+    manifests:
+    - kubernetes/app.yaml
+    defaultNamespace: golang-rest

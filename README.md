@@ -9,15 +9,37 @@ Second exercise for the subject MC523 SS21 at FH OÖ Campus Hagenberg based on t
 - `go`
 - `docker`
 - `docker-compose`
+- `skaffold`
+- `helm`
+- `kubectl`
 
 ## 🚀 Get started
-```
+
+```bash
 make run-docker
 ```
 
 ## ⚠️ Limitations
 
 * This is a demo application and therefore does ignore common security practices.
+
+## ☸️ Kubernetes Deployment
+
+Your `kubectl` must be configured correctly. For local deployment [minikube](https://minikube.sigs.k8s.io/docs/) or [Kind](https://kind.sigs.k8s.io/docs/user/quick-start/) can be used.
+
+1. Deploy the application
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+skaffold run
+```
+
+2. Forward to a local port
+```bash
+kubectl port-forward deployment/backend 8010:8010 -n golang-rest
+```
+
+3. Create the schema and insert test data
 
 ## ♻️ Refactorings
 
